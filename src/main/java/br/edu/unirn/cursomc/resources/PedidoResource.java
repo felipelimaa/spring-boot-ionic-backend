@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.unirn.cursomc.domain.Categoria;
-import br.edu.unirn.cursomc.services.CategoriaService;
+import br.edu.unirn.cursomc.domain.Pedido;
+import br.edu.unirn.cursomc.services.PedidoService;
 
 @RestController // controlador REST
-@RequestMapping("/categorias") // endpoint de resposta
-public class CategoriaResource {
+@RequestMapping("/pedidos") // endpoint de resposta
+public class PedidoResource {
 
 	@Autowired
-	private CategoriaService service;
+	private PedidoService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
-		Categoria obj = service.buscar(id);
+		Pedido obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
