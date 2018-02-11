@@ -1,12 +1,12 @@
 package br.edu.unirn.cursomc.services;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.edu.unirn.cursomc.domain.Categoria;
 import br.edu.unirn.cursomc.repositories.CategoriaRepository;
+import br.edu.unirn.cursomc.services.exceptions.DataIntegrityException;
 import br.edu.unirn.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -32,6 +32,16 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId()); //busca e verifica se existe
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.delete(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+		}
 	}
 	
 }
