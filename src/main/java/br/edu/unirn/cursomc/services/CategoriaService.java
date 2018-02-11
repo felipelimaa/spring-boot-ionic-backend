@@ -1,5 +1,7 @@
 package br.edu.unirn.cursomc.services;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo; //instancia da dependencia
 	
-	public Categoria buscar(Integer id) { //busca de categoria
+	public Categoria find(Integer id) { //busca de categoria
 		Categoria obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 
@@ -24,6 +26,11 @@ public class CategoriaService {
 	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null); //checagem se o ID está nulo, se não estiver nulo o metodo save considera como atualização
+		return repo.save(obj);
+	}
+	
+	public Categoria update(Categoria obj) {
+		find(obj.getId()); //busca e verifica se existe
 		return repo.save(obj);
 	}
 	

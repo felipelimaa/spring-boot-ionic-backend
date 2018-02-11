@@ -13,7 +13,7 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository repo; //instancia da dependencia
 	
-	public Pedido buscar(Integer id) { //busca de categoria
+	public Pedido find(Integer id) { //busca de categoria
 		Pedido obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 

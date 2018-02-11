@@ -13,7 +13,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo; //instancia da dependencia
 	
-	public Cliente buscar(Integer id) { //busca de categoria
+	public Cliente find(Integer id) { //busca de categoria
 		Cliente obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 
