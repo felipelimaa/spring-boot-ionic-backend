@@ -1,6 +1,8 @@
 package br.edu.unirn.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -11,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@JsonIgnore //não será serializado (nem pedido, nem produto)
-	@EmbeddedId //id embutido em um auxiliar
+	@JsonIgnore // não será serializado (nem pedido, nem produto)
+	@EmbeddedId // id embutido em um auxiliar
 	private ItemPedidoPK id = new ItemPedidoPK();
 
 	private Double desconto;
@@ -31,7 +33,7 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	
+
 	public double getSubTotal() {
 		return (preco - desconto) * quantidade;
 	}
@@ -40,7 +42,7 @@ public class ItemPedido implements Serializable {
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
-	
+
 	public void setPedido(Pedido pedido) {
 		id.setPedido(pedido);
 	}
@@ -48,7 +50,7 @@ public class ItemPedido implements Serializable {
 	public Produto getProduto() {
 		return id.getProduto();
 	}
-	
+
 	public void setProduto(Produto produto) {
 		id.setProduto(produto);
 	}
@@ -108,6 +110,22 @@ public class ItemPedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		StringBuilder builder = new StringBuilder();
+		builder.append("Descrição do produto: ");
+		builder.append(getProduto().getNome());
+		builder.append("\n Qtd: ");
+		builder.append(getQuantidade());
+		builder.append("\n Preço Unitário: ");
+		builder.append(nf.format(getPreco()));
+		builder.append("\n Subtotal: ");
+		builder.append(nf.format(getSubTotal()));
+		builder.append("\n--------------------------------------\n");
+		return builder.toString();
 	}
 
 }
