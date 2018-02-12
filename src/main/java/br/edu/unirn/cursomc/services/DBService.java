@@ -123,13 +123,13 @@ public class DBService {
 		Endereco e2 = new Endereco(null, "Avenida Antônio Basílio", "3598", "Setor ATI", "Lagoa Nova", "59056380", cli1,
 				c1);
 
-		Cliente cli2 = new Cliente(null, "Unimed Natal", "ati@unimednatal.com.br", "08380701000105",
+		Cliente cli2 = new Cliente(null, "Unimed Natal", "teste@gmail.com", "08380701000105",
 				TipoCliente.PESSOAJURIDICA);
 		cli2.getTelefones().addAll(Arrays.asList("988263200", "32201500"));
 		Endereco e3 = new Endereco(null, "Avenida Antônio Basílio", "3598", "Setor ATI", "Lagoa Nova", "59056380", cli2,
 				c1);
 
-		Cliente cli3 = new Cliente(null, "Marina Dantas", "mariinadantas@gmail.com", "11122233344",
+		Cliente cli3 = new Cliente(null, "Marina Dantas", "teste2@gmail.com", "11122233344",
 				TipoCliente.PESSOAFISICA);
 		cli3.getTelefones().addAll(Arrays.asList("999656844", "32187639"));
 		Endereco e4 = new Endereco(null, "Rua Deputado Marcílio Furtado", "570", "", "Pitimbu", "59069470", cli3, c1);
