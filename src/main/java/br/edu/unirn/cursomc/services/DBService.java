@@ -20,6 +20,7 @@ import br.edu.unirn.cursomc.domain.PagamentoComCartao;
 import br.edu.unirn.cursomc.domain.Pedido;
 import br.edu.unirn.cursomc.domain.Produto;
 import br.edu.unirn.cursomc.domain.enums.EstadoPagamento;
+import br.edu.unirn.cursomc.domain.enums.Perfil;
 import br.edu.unirn.cursomc.domain.enums.TipoCliente;
 import br.edu.unirn.cursomc.repositories.CategoriaRepository;
 import br.edu.unirn.cursomc.repositories.CidadeRepository;
@@ -122,6 +123,7 @@ public class DBService {
 		Cliente cli1 = new Cliente(null, "Felipe Lima", "fearlimasi@gmail.com", "11056005483",
 				TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("999348804", "32201543"));
+		cli1.addPerfil(Perfil.ADMIN);
 		Endereco e1 = new Endereco(null, "Rua Escritor Oswald de Andrade", "51", "", "Pitimbu", "59069350", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Antônio Basílio", "3598", "Setor ATI", "Lagoa Nova", "59056380", cli1,
 				c1);
