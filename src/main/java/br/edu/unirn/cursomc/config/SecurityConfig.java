@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import br.edu.unirn.cursomc.security.JWTAuthenticationFilter;
+import br.edu.unirn.cursomc.security.JWTAuthorizationFilter;
 import br.edu.unirn.cursomc.security.JWTUtil;
 
 @Configuration
@@ -56,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() //permitindo apenas o metodo get na lista PubMatGet
 			.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil,userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //assegurando que o backend não criará sessão de usuário
 	}
 	
